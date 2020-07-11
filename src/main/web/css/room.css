@@ -1,0 +1,59 @@
+.choose {
+    background: #EAEAEA;
+    position: absolute;
+
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+
+    transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+    -webkit-transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+    -moz-transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+    -ms-transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+    -o-transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+}
+
+.one:hover {
+    top: 15%;
+    left: 10%;
+
+    height: 60%;
+    width: 40%;
+}
+
+.two:hover {
+    top: 15%;
+    left: 50%;
+
+    height: 60%;
+    width: 40%;
+}
+
+.one {
+    top: 20%;
+    left: 15%;
+
+    height: 50%;
+    width: 30%;
+}
+
+.two {
+    top: 20%;
+    left: 55%;
+
+    height: 50%;
+    width: 30%;
+}
+
+.font {
+
+    position: absolute;
+
+    top: 30%;
+    left: 48%;
+
+    height: 50%;
+    width: 50%;
+}

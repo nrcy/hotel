@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<link rel="stylesheet" href="css/login.css">
+<div id="center-all">
+    <form>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="basic-addon1">@</span>
+            <input type="text" class="form-control" id="username" placeholder="用户名" aria-describedby="basic-addon1">
+        </div>
+        <br />
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="basic-addon">@</span>
+            <input type="password" class="form-control" id="password" placeholder="密码" aria-describedby="basic-addon1">
+        </div>
+        <br />
+        <div class="alert alert-danger" role="alert" id="danger">欢迎登录</div>
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="submit">登录</button>
+        <a href="register">没有账号？快来注册</a>
+    </form>
+</div>
+<script src="./js/login.js"></script>
+</body>
+</html>

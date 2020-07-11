@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>你若成雨的酒店</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<link href="css/room.css" rel="stylesheet">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">你若成雨的酒店</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       role="button" aria-haspopup="true" aria-expanded="false" id="hasHistory">
+                        个人中心<span class="badge historyIndex">0</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a id="check_out" style="display: none">我要退房
+                            <span class="badge historyIndex">0</span>
+                        </a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a id="myself_information">个人信息管理</a></li>
+                        <li><a href="login">退出登录</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="one choose" value="one">
+    <div class="font" value="one">
+        <p value="one">单</p>
+        <p value="one">人</p>
+        <p value="one">间</p>
+    </div>
+</div>
+<div class="two choose" value="two">
+    <div class="font" value="two">
+        <p value="two">双</p>
+        <p value="two">人</p>
+        <p value="two">间</p>
+    </div>
+</div>
+
+<div class="modal fade" id="room_information" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">选择房间信息</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div>房间号:<p id="roomId"></p></div>
+                    <div>房间大小:<p id="roomSize"></p></div>
+                    是否需要早餐：
+                    <label class="radio-inline">
+                        <input type="radio" class="breakfast" name="inlineRadioOptions" id="inlineRadio1" value="true">需要
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" class="breakfast" name="inlineRadioOptions" id="inlineRadio2" value="false" checked>不需要
+                    </label>
+                    <p>早餐十元</p>
+                    <div>总价:<p id="price"></p></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">再想想</button>
+                <button type="button" class="btn btn-primary" id="submit" data-dismiss="modal">就订这间</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="history" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">未退房的订单</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>房间号</th>
+                        <th>价钱</th>
+                        <th>是否支付</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td id="roomIdPay"></td>
+                        <td id="pricePay"></td>
+                        <td><input type='checkbox' id='check'/></td>
+                    </tr>
+                    </tbody>
+                    <tbody id="history_table"></tbody>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" disabled="disabled" id="pay_submit" data-dismiss="modal">
+                    支付
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myself_information_div">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">个人信息</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>姓名</label>
+                        <input type="text" class="form-control" id="set_information_username" placeholder="正在加载..."
+                               disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" class="form-control" id="set_information_password" placeholder="正在加载..."
+                               disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>总花销</label>
+                        <input type="text" class="form-control" id="set_information_price" placeholder="正在加载..."
+                               disabled>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" style="display: none"
+                        id="set_myself_information_submit">保存
+                </button>
+                <button type="button" class="btn btn-danger" id="set_myself_information_btn">修改</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="has_history_tips">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">你若成雨的酒店提醒您：</h4>
+            </div>
+            <div class="modal-body">
+                <p>您还有一间房未退订！！！</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script src="./js/room.js"></script>
+</body>
+</html>

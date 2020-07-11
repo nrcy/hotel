@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>你若成雨的酒店</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default nav">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">你若成雨的酒店</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="login">登录</a></li>
+                <li>|</li>
+                <li><a href="register">注册</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<button type="button" class="btn btn-primary btn-lg" id="btn">我要订房间！！！</button>
+<script>
+    $("#btn").click(function () {
+        window.location.href = "room";
+    });
+</script>
+
+<style>
+
+    #btn {
+        top: 60%;
+        left: 45%;
+        position: absolute
+    }
+
+</style>
+</body>
+</html>
