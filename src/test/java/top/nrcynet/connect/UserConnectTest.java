@@ -23,14 +23,14 @@ public class UserConnectTest {
 
     @Test
     public void login(){
-//        User user = connect.login("tom", 123);
-//        System.out.println(user);
+        User user = connect.login("tom", 123456);
+        System.out.println(user);
     }
 
     @Test
     public void selectUserByName(){
-//        User user = connect.selectUserByName("tom");
-//        System.out.println(user);
+        User user = connect.selectUserByName("tim");
+        System.out.println(user);
     }
 
     @Test

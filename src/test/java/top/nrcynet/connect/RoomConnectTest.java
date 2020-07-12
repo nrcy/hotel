@@ -20,14 +20,14 @@ public class RoomConnectTest {
 
     @Test
     public void selectRoomByFloorAndNum(){
-//        Room room = connect.selectRoomByFloorAndNum(1, 02);
-//        System.out.println(room);
+        Room room = connect.selectRoomByFloorAndNum(1, 2);
+        System.out.println(room);
     }
 
     @Test
     public void selectExistRoomByType(){
-//        List<Room> rooms = connect.selectExistRoomByType(2);
-//        System.out.println(rooms);
+        List<Room> rooms = connect.selectExistRoomByType(2);
+        System.out.println(rooms);
     }
 
     @Test

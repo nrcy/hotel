@@ -23,8 +23,8 @@ public class CacheConnectTest {
 
     @Test
     public void selectCacheByName(){
-//        Cache tom = connect.selectCacheByName("tom");
-//        System.out.println(tom);
+        Cache tom = connect.selectCacheByName("tom");
+        System.out.println(tom);
     }
 
     @Test
