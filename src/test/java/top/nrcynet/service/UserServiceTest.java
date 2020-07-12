@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import top.nrcynet.dao.bean.User;
 
+//这是UserService的测试类
 public class UserServiceTest {
 
     public UserService userService;

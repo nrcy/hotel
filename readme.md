@@ -6,6 +6,7 @@
 ## src/main/项目数据/工程架构.jpg
 ## src/main/项目数据/sql : 数据库结构及其数据，简单数据表
 ## src/main/java,resources,web:主程序
+## src/test/java:测试主程序,与主程序三层对应
 
 # java包结构：
 ## top.nrcynet.controller:控制器

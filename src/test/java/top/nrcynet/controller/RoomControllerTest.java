@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+//这是RoomController的测试类
 public class RoomControllerTest {
 
     private RoomController roomController;

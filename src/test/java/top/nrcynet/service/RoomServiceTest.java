@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import top.nrcynet.dao.bean.Room;
 
+//这是RoomService的测试类
 public class RoomServiceTest {
 
     private RoomService roomService;

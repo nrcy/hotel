@@ -5,11 +5,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import top.nrcynet.dao.bean.Cache;
 
-public class CaCheServiceTest {
+//这是Cache的测试类
+public class CacheServiceTest {
 
     private CacheService cacheService;
 
-    public CaCheServiceTest(){
+    public CacheServiceTest(){
         String path = "applicationContext.xml";
 
         ApplicationContext context = new ClassPathXmlApplicationContext(path);
