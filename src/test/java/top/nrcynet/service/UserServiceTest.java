@@ -9,10 +9,11 @@ import top.nrcynet.dao.bean.User;
 public class UserServiceTest {
 
     public UserService userService;
+	private ApplicationContext context;
 
     public UserServiceTest(){
         String path = "applicationContext.xml";
-        ApplicationContext context = new ClassPathXmlApplicationContext(path);
+        context = new ClassPathXmlApplicationContext(path);
         userService = (UserService) context.getBean("userService");
     }
 
@@ -31,13 +32,13 @@ public class UserServiceTest {
 
     @Test
     public void login(){
-//        boolean result = userService.login("tom435", "123");
+//        boolean result = userService.login("tom", "123");
 //        System.out.println(result);
     }
 
     @Test
     public void register(){
-//        boolean result = userService.register("tim", "1234");
+//        boolean result = userService.register("tom", "1234");
 //        System.out.println(result);
     }
 

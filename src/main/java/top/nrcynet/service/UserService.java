@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.nrcynet.dao.bean.User;
-import top.nrcynet.dao.connect.Connect;
+import top.nrcynet.dao.mapper.UserMapper;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class UserService {
 
     @Autowired
-    private Connect connect;
+    private UserMapper userMapper;
 
     /**
      *
@@ -20,7 +20,7 @@ public class UserService {
      */
     public boolean verificationName(String name){
 
-        User user = connect.selectUserByName(name);
+        User user = userMapper.selectUserByName(name);
 
         if (user == null) {
             return true;
@@ -38,9 +38,9 @@ public class UserService {
      */
     public boolean register(String name, String password){
 
-        User user = connect.selectUserByName(name);
+        User user = userMapper.selectUserByName(name);
         if (user == null) {
-            connect.register(name, new Integer(password));
+        	userMapper.register(name, new Integer(password));
             return true;
         }
         return false;
@@ -49,7 +49,7 @@ public class UserService {
 
     public boolean login(String name, String password){
 
-        User user = connect.login(name, new Integer(password));
+        User user = userMapper.login(name, new Integer(password));
 
         if (user != null) {
             return true;
@@ -62,7 +62,7 @@ public class UserService {
     public boolean setUserPasswordByName(String name,
                                          String password){
         try {
-            connect.updateUserPasswordByName(name, new Integer(password));
+        	userMapper.updateUserPasswordByName(name, new Integer(password));
             return true;
         } catch (NumberFormatException e) {
             e.printStackTrace();
@@ -73,7 +73,7 @@ public class UserService {
     public User userInformation(String name){
         User user = null;
         try {
-            user = connect.selectUserByName(name);
+            user = userMapper.selectUserByName(name);
         } catch (Exception e) {
             e.printStackTrace();
             user = null;

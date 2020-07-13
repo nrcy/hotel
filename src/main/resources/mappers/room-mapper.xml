@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.nrcynet.dao.mapper.RoomMapper">
+	
+	<select id="selectRoomByFloorAndNum" resultType="top.nrcynet.dao.bean.Room">
+        select 
+        	r.id,r.num,r.size,r.floor,r.type,r.price,r.status 
+        from 
+        	hotel.room r 
+        where 
+        	r.floor=#{floor} and r.num=#{num}
+    </select>
+
+    <select id="selectExistRoomByType" resultType="top.nrcynet.dao.bean.Room">
+        select 
+        	r.id,r.num,r.size,r.floor,r.type,r.price,r.status 
+        from 
+        	hotel.room r 
+        where 
+        	r.status=0 and r.type=#{type}
+    </select>
+    <update id="setRoomStatusByFloorAndNum">
+        update 
+        	hotel.room 
+        set 
+        	status=#{status} 
+        where 
+        	floor=#{floor} and num=#{num}
+    </update>
+	
+</mapper>

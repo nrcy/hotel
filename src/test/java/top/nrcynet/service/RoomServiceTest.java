@@ -9,11 +9,12 @@ import top.nrcynet.dao.bean.Room;
 public class RoomServiceTest {
 
     private RoomService roomService;
+	private ApplicationContext context;
 
     public RoomServiceTest(){
         String path = "applicationContext.xml";
 
-        ApplicationContext context = new ClassPathXmlApplicationContext(path);
+        context = new ClassPathXmlApplicationContext(path);
         roomService = (RoomService) context.getBean("roomService");
     }
 

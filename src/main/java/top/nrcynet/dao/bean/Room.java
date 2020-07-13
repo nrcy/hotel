@@ -1,7 +1,5 @@
 package top.nrcynet.dao.bean;
 
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-
 public class Room {
 
     private Integer id;

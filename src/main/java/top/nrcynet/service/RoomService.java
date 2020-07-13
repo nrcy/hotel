@@ -6,18 +6,24 @@ import org.springframework.transaction.annotation.Transactional;
 import top.nrcynet.dao.bean.Cache;
 import top.nrcynet.dao.bean.Room;
 import top.nrcynet.dao.bean.User;
-import top.nrcynet.dao.connect.Connect;
+import top.nrcynet.dao.mapper.CacheMapper;
+import top.nrcynet.dao.mapper.RoomMapper;
+import top.nrcynet.dao.mapper.UserMapper;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class RoomService {
 
     @Autowired
-    private Connect connect;
+    private RoomMapper roomMapper;
+    
+    @Autowired
+    private CacheMapper cacheMapper;
+    
+    @Autowired
+    private UserMapper userMapper;
 
     /**
      *  查看存在房间
@@ -25,7 +31,7 @@ public class RoomService {
      */
     public Room getOneRoom(String type){
 
-        List<Room> rooms = connect.selectExistRoomByType(new Integer(type));
+        List<Room> rooms = roomMapper.selectExistRoomByType(new Integer(type));
         if (rooms.size() >= 1){
             return rooms.get(0);
         }
@@ -45,9 +51,9 @@ public class RoomService {
             Integer floor = roomId / 100;
             Integer num = roomId % 100;
 
-            Room room = connect.selectRoomByFloorAndNum(floor, num);
+            Room room = roomMapper.selectRoomByFloorAndNum(floor, num);
 
-            connect.setRoomStatusByFloorAndNum(floor, num, 1);
+            roomMapper.setRoomStatusByFloorAndNum(floor, num, 1);
             Integer price = room.getPrice();
             if (breakfast.equals("true")){
                 price += 10;
@@ -55,7 +61,7 @@ public class RoomService {
             }else {
                 breakfast = "n";
             }
-            connect.insert(username, breakfast, roomId, price);
+            cacheMapper.insert(username, breakfast, roomId, price);
             return true;
         }catch (Exception e){
             e.printStackTrace();
@@ -69,7 +75,7 @@ public class RoomService {
      */
     public boolean checkOut(String username){
         try {
-            Cache cache = connect.selectCacheByName(username);
+            Cache cache = cacheMapper.selectCacheByName(username);
 
             Integer roomId = cache.getRoomId();
 
@@ -78,13 +84,13 @@ public class RoomService {
 
             Integer cachePrice = cache.getPrice();
 
-            User user = connect.selectUserByName(username);
+            User user = userMapper.selectUserByName(username);
 
             Integer price = cachePrice + user.getConsumption();
 
-            connect.updateUserConsumptionByName(username, price);
-            connect.setRoomStatusByFloorAndNum(floor, num, 0);
-            connect.delete(username);
+            userMapper.updateUserConsumptionByName(username, price);
+            roomMapper.setRoomStatusByFloorAndNum(floor, num, 0);
+            cacheMapper.delete(username);
             return true;
         }catch (Exception e){
             return false;

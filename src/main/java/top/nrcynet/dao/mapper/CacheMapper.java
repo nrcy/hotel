@@ -1,8 +1,11 @@
 package top.nrcynet.dao.mapper;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
 import top.nrcynet.dao.bean.Cache;
 
+@Repository
 public interface CacheMapper {
 
     void insert(@Param("name") String name,

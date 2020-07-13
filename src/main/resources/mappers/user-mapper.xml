@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.nrcynet.dao.mapper.UserMapper">
+	<select id="selectUserByName" resultType="top.nrcynet.dao.bean.User">
+        select 
+        	u.id,u.name,u.password,u.is_evaluate,u.consumption 
+        from 
+        	hotel.user u 
+        where 
+        	u.name=#{name}
+    </select>
+    <update id="updateUserConsumptionByName">
+        update 
+        	hotel.user 
+        set 
+        	consumption=#{consumption} 
+        where 
+        	name=#{name}
+    </update>
+    <insert id="register">
+        insert into 
+        	hotel.user (name,password,is_evaluate,consumption) 
+        values
+        	(#{name},#{password},'y',0)
+    </insert>
+    <select id="login" resultType="top.nrcynet.dao.bean.User">
+        select 
+        	u.id,u.name,u.password,u.is_evaluate,u.consumption 
+        from 
+        	hotel.user u 
+        where 
+        	u.name=#{name} and u.password=#{password}
+    </select>
+    <update id="updateUserPasswordByName">
+        update 
+        	hotel.user 
+        set 
+        	password=#{password} 
+        where 
+        	name=#{name}
+    </update>
+	
+</mapper>

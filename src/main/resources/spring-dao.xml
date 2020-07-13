@@ -4,23 +4,25 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="top.nrcynet.dao.connect"/>
+    <context:component-scan base-package="top.nrcynet.dao.connect,top.nrcynet.dao.mapper"/>
+
+	<!-- <context:property-placeholder location="classpath:jdbc.properties"/> -->
 
     <bean id="dataSources" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value=""/>
-        <property name="username" value=""/>
-        <property name="password" value=""/>
+        <property name="url" value="jdbc:mysql://x.x.x.x:3306/hotel"/>
+        <property name="username" value="xxx"/>
+        <property name="password" value="xxx"/>
     </bean>
 
     <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
         <property name="dataSource" ref="dataSources"/>
         <property name="configLocation" value="classpath:mybatis_global.xml"/>
-        <property name="mapperLocations" value="classpath:mybatis_mapper.xml"/>
+        <property name="mapperLocations" value="classpath:mappers/*.xml"/>
     </bean>
-
-    <bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
-        <constructor-arg index="0" ref="sqlSessionFactoryBean"/>
-    </bean>
-
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="top.nrcynet.dao.mapper"></property>
+	</bean>
+	
 </beans>

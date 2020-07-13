@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.nrcynet.dao.mapper.CacheMapper">
+	
+    <insert id="insert">
+        insert into 
+        	hotel.cache (name,breakfast,room_id,price) 
+        values
+        	(#{name},#{breakfast},#{roomId},#{price})
+    </insert>
+    <delete id="delete">
+        delete from 
+        	hotel.cache 
+        where 
+        	name=#{name}
+    </delete>
+    <select id="selectCacheByName" resultType="top.nrcynet.dao.bean.Cache">
+        select 
+        	c.id,c.name,c.breakfast,c.room_id,c.price 
+        from 
+        	hotel.cache c 
+        where 
+        	c.name=#{name}
+    </select>
+	
+</mapper>

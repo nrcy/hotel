@@ -13,5 +13,5 @@
 ## top.nrcynet.dao:有关数据库连接
 ## top.nrcynet.service: 整合dao层的接口，供controller调用
 
-# 项目架构
+# 项目架构2.0
 ![这个一个项目架构图片](src/main/项目数据/工程框架.jpg)
