@@ -1,11 +1,16 @@
 package top.nrcynet.controller;
 
-import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import top.nrcynet.dao.bean.ResultModel;
+import top.nrcynet.dao.bean.ResultModel.GetDataResult;
+import top.nrcynet.dao.bean.ResultModel.GetResult;
 import top.nrcynet.dao.bean.User;
 import top.nrcynet.service.UserService;
 
@@ -19,22 +24,30 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private ResultModel resultModel;
 
+    @JsonView(GetResult.class)
     @RequestMapping("/login")
-//    public String login(@RequestParam(name = "name") String name,
-//                        @RequestParam(name = "password") String password){
-    public String login(HttpServletRequest request, HttpServletResponse response){
+    public ResultModel login(HttpServletRequest request, HttpServletResponse response){
 
         String name = request.getParameter("name");
         String password = request.getParameter("password");
 
         if (name == "" || password == ""){
-            return "{\"result\":\"false\"}";
+        	resultModel.setResult(false);
+            return resultModel;
         }
-
-        String data = "";
-
-        boolean result = userService.login(name, password);
+        
+        boolean result = false;
+        
+        try {
+        	result = userService.login(name, password);
+        }catch(Exception e) {
+        	resultModel.setResult(false);
+        	return resultModel;
+        }
 
         if (result) {
 
@@ -45,64 +58,68 @@ public class UserController {
 
             response.addCookie(cookie);
 
-            data = "{\"result\":\"true\"}";
+            resultModel.setResult(true);
         }else {
-            data = "{\"result\":\"false\"}";
+        	resultModel.setResult(false);
         }
-        return data;
+        return resultModel;
     }
 
+    @JsonView(GetResult.class)
     @RequestMapping("/register")
-    public String register(@RequestParam(name = "name") String name,
+    public ResultModel register(@RequestParam(name = "name") String name,
                            @RequestParam(name = "password") String password){
 
-        String data = "{\"result\":\"false\"}";
+    	resultModel.setResult(false);
 
         boolean value = userService.register(name, password);
 
         if (value) {
-            data = "{\"result\":\"true\"}";
+        	resultModel.setResult(true);
         }
 
-        return data;
+        return resultModel;
     }
 
+    @JsonView(GetResult.class)
     @RequestMapping("/verificationName")
-    public String verificationName(@RequestParam(name = "name") String name){
+    public ResultModel verificationName(@RequestParam(name = "name") String name){
 
-        String data = "{\"result\":\"true\"}";
+    	resultModel.setResult(true);
 
         boolean value = userService.verificationName(name);
 
         if (value) {
-            return data;
+            return resultModel;
         }
-        data = "{\"result\":\"false\"}";
-        return data;
+        resultModel.setResult(false);
+        return resultModel;
     }
 
+    @JsonView(GetResult.class)
     @RequestMapping("/set_user_password")
-    public String setUserPassword(@RequestParam("name") String name,
+    public ResultModel setUserPassword(@RequestParam("name") String name,
                                   @RequestParam("password") String password){
-        String json = "";
 
         boolean result = userService.setUserPasswordByName(name, password);
 
         if (result) {
-            json = "{\"result\":\"true\"}";
+        	resultModel.setResult(true);
         }else {
-            json = "{\"result\":\"false\"}";
+        	resultModel.setResult(false);
         }
-        return json;
+        return resultModel;
     }
 
+    @JsonView(GetDataResult.class)
     @RequestMapping("/information")
-    public String userInformation(@CookieValue("name") String name){
+    public ResultModel userInformation(@CookieValue(value = "name", defaultValue = "") String name){
         User user = userService.userInformation(name);
 
-        String json = JSON.toJSONString(user);
+        resultModel.setObject(user);
+        resultModel.setResult(true);
 
-        return json;
+        return resultModel;
     }
 
 }

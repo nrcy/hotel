@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import top.nrcynet.dao.bean.ResultModel;
+
 //这是RoomController的测试类
 public class RoomControllerTest {
 
@@ -12,12 +14,12 @@ public class RoomControllerTest {
     public RoomControllerTest(){
         String path = "applicationContext.xml";
         ApplicationContext context = new ClassPathXmlApplicationContext(path);
-//        roomController = (RoomController) context.getBean("roomController");
+        roomController = (RoomController) context.getBean("roomController");
     }
 
     @Test
     public void getOneRoom(){
-//        String room = roomController.getOneRoom("1");
+//        ResultModal room = roomController.getOneRoom("1");
 //        System.out.println(room);
     }
 

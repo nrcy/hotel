@@ -10,7 +10,7 @@
 
     <bean id="dataSources" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://x.x.x.x:3306/hotel"/>
+        <property name="url" value="jdbc:mysql://x.x.x.x:xxx/hotel"/>
         <property name="username" value="xxx"/>
         <property name="password" value="xxx"/>
     </bean>
@@ -23,6 +23,11 @@
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="top.nrcynet.dao.mapper"></property>
+	</bean>
+	
+	<!-- json数据返回数据模型 -->
+	<bean class="top.nrcynet.dao.bean.ResultModel">
+		<property name="result" value="false"></property>
 	</bean>
 	
 </beans>

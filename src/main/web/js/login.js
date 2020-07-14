@@ -9,9 +9,7 @@ $("#submit").click(function () {
         },
         function (data, status) {
             //data={result:true/false}
-            var json = JSON.parse(data);
-            var result = json["result"];
-            if (eval(result)){
+            if (data["result"]){
                 $("#danger").text("登录成功");
                 // url
                 window.location.href = "room";

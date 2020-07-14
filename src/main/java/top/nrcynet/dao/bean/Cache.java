@@ -1,5 +1,7 @@
 package top.nrcynet.dao.bean;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 public class Cache {
 
     private Integer id;
@@ -12,6 +14,7 @@ public class Cache {
 
     private Integer price;
 
+    @JsonView(ResultModel.GetDataResult.class)
     public Integer getId() {
         return id;
     }
@@ -20,6 +23,7 @@ public class Cache {
         this.id = id;
     }
 
+    @JsonView(ResultModel.GetDataResult.class)
     public String getName() {
         return name;
     }
@@ -28,6 +32,7 @@ public class Cache {
         this.name = name;
     }
 
+    @JsonView(ResultModel.GetDataResult.class)
     public String getBreakfast() {
         return breakfast;
     }
@@ -36,6 +41,7 @@ public class Cache {
         this.breakfast = breakfast;
     }
 
+    @JsonView(ResultModel.GetDataResult.class)
     public Integer getRoomId() {
         return roomId;
     }
@@ -44,6 +50,7 @@ public class Cache {
         this.roomId = roomId;
     }
 
+    @JsonView(ResultModel.GetDataResult.class)
     public Integer getPrice() {
         return price;
     }

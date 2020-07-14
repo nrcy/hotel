@@ -6,8 +6,7 @@ var hasHistory = false;
 
 function hasHistoryFunc(){
     $.get("/hotel/api/have_history", function (data) {
-        var json = JSON.parse(data);
-        hasHistory = eval(json["result"]);
+        hasHistory = data["result"];
         if (hasHistory){
             $(".historyIndex").text("1");
             $("#check_out").css("display", "block");
@@ -40,12 +39,14 @@ $(".choose").click(function (event) {
                 "type": type
             },
             function (data) {
-                //data = {"floor":2,"id":31,"num":1,"price":246,"size":15,"status":0,"type":1}
-                var json = JSON.parse(data);
-                var roomId = json["floor"] * 100 + json["num"];
-                $("#roomId").text(roomId);
-                $("#roomSize").text(json["size"]);
-                $("#price").text(json["price"]);
+                //data = {"result":true,"object":{"id":31,"num":1,"size":15,"floor":2,"type":1,"price":246,"status":0}}
+                if(data["result"]){
+                	var json = data["object"];
+	                var roomId = json["floor"] * 100 + json["num"];
+	                $("#roomId").text(roomId);
+	                $("#roomSize").text(json["size"]);
+	                $("#price").text(json["price"]);
+                }
             });
     }
 });
@@ -71,8 +72,7 @@ $("#submit").click(function () {
             "roomId": $("#roomId").text(),
             "breakfast": breakfast.toString()
         }, function (data) {
-            var json = JSON.parse(data);
-            if (eval(json["result"])) {
+            if (data["result"]) {
                 alert("预定成功");
                 hasHistoryFunc();
             } else {
@@ -85,9 +85,12 @@ $("#submit").click(function () {
 $("#check_out").click(function () {
     $("#history").modal("show");
     $.get("/hotel/api/history", function (data) {
-        var json = JSON.parse(data);
-        $("#roomIdPay").text(json["roomId"]);
-        $("#pricePay").text(json["price"]);
+    	if(data["result"]){
+    		var json = data["object"];
+    		$("#roomIdPay").text(json["roomId"]);
+        	$("#pricePay").text(json["price"]);
+    	}
+
     });
 });
 
@@ -103,8 +106,7 @@ $("#check").click(function () {
 //支付
 $("#pay_submit").click(function () {
     $.get("/hotel/api/pay", function (data) {
-        var json = JSON.parse(data);
-        if (eval(json["result"])) {
+        if (data["result"]) {
             alert("支付成功！");
             hasHistoryFunc();
         } else {
@@ -117,10 +119,12 @@ $("#pay_submit").click(function () {
 $("#myself_information").click(function () {
     $("#myself_information_div").modal("show");
     $.get("/hotel/api/information", function (data) {
-        var json = JSON.parse(data);
-        $("#set_information_username").val(json["name"]);
-        $("#set_information_password").val(json["password"]);
-        $("#set_information_price").val(json["consumption"]);
+    	if(data["result"]){
+    		var json = data["object"];
+    		$("#set_information_username").val(json["name"]);
+	        $("#set_information_password").val(json["password"]);
+	        $("#set_information_price").val(json["consumption"]);
+    	}
     })
 });
 
@@ -137,8 +141,7 @@ $("#set_myself_information_submit").click(function () {
             "name": $("#set_information_username").val(),
             "password": $("#set_information_password").val()
         }, function (data) {
-            var json = JSON.parse(data);
-            if (eval(json["result"])) {
+            if (data["result"]) {
                 alert("修改成功");
             } else {
                 alert("修改失败，请联系客服！")

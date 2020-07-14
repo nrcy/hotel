@@ -22,9 +22,7 @@ $("#username").blur(function () {
         },
         function(data){
             //json={result:true/false}
-            var json = JSON.parse(data);
-            var result = json["result"];
-            if(eval(result)){
+            if(eval(data["result"])){
                 $("#danger").text("欢迎注册");
             }else{
                 $("#danger").text("姓名重复，请更改姓名！");
@@ -65,9 +63,7 @@ $("#submit").click(function () {
             },
             function(data,status){
                 //json={result:true/false}
-                var json = JSON.parse(data);
-                var result = json["result"];
-                if (eval(result)) {
+                if (data["result"]) {
                     $("#modal").modal("show");
                 } else {
                     $("#danger").text("注册失败，请联系客服！");
