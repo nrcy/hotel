@@ -46,7 +46,9 @@ $(".choose").click(function (event) {
 	                $("#roomId").text(roomId);
 	                $("#roomSize").text(json["size"]);
 	                $("#price").text(json["price"]);
-                }
+                }else{
+            		window.location.href = "login";
+            	}
             });
     }
 });
@@ -89,6 +91,8 @@ $("#check_out").click(function () {
     		var json = data["object"];
     		$("#roomIdPay").text(json["roomId"]);
         	$("#pricePay").text(json["price"]);
+    	}else{
+    		window.location.href = "login";
     	}
 
     });
@@ -124,6 +128,8 @@ $("#myself_information").click(function () {
     		$("#set_information_username").val(json["name"]);
 	        $("#set_information_password").val(json["password"]);
 	        $("#set_information_price").val(json["consumption"]);
+    	}else{
+    		window.location.href = "login";
     	}
     })
 });

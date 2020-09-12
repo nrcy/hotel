@@ -20,4 +20,15 @@
         <property name="suffix" value=".html"/>
     </bean>
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/api/**"/>
+			<mvc:exclude-mapping path="/api/verificationName"/>
+			<mvc:exclude-mapping path="/api/login"/>
+			<mvc:exclude-mapping path="/api/register"/>
+			<bean class="top.nrcynet.interceptor.LoginStateInterceptor"></bean>
+		</mvc:interceptor>
+	
+	</mvc:interceptors>
+
 </beans>

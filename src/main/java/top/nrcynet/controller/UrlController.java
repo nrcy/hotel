@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class UrlController {
@@ -24,10 +25,14 @@ public class UrlController {
     public String room(HttpServletRequest request,
                        HttpServletResponse response){
         Cookie[] cookies = request.getCookies();
+        HttpSession session = request.getSession();
 
         if (cookies != null){
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("name")) {
+                	if(session.getAttribute("loginState") == null) {
+                		session.setAttribute("loginState", true);
+                	}
                     return "room";
                 }
             }

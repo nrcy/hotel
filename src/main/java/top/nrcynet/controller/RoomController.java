@@ -29,6 +29,11 @@ public class RoomController {
     @Autowired
     private ResultModel resultModel;
     
+    /**
+     * 查询出一个指定type的房间
+     * @param type 房间类型
+     * @return json数据
+     */
     @JsonView(GetDataResult.class)
     @RequestMapping("/get_room")
     public ResultModel getOneRoom(@RequestParam("type") String type){

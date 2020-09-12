@@ -17,6 +17,7 @@ import top.nrcynet.service.UserService;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/api/")
@@ -51,13 +52,18 @@ public class UserController {
 
         if (result) {
 
-            Cookie cookie = new Cookie("name", name);
+        	
+        	
+            Cookie cookie = new Cookie("name_uuid", name);
 
             cookie.setMaxAge(60 * 60 * 24 * 10);
             cookie.setPath("/");
 
             response.addCookie(cookie);
-
+            
+            HttpSession session = request.getSession();
+            session.setAttribute("loginState", true);
+            
             resultModel.setResult(true);
         }else {
         	resultModel.setResult(false);
