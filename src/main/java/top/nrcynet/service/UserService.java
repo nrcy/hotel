@@ -40,7 +40,8 @@ public class UserService {
 
         User user = userMapper.selectUserByName(name);
         if (user == null) {
-        	userMapper.register(name, new Integer(password));
+//        	userMapper.register(name, new Integer(password));
+        	userMapper.register(name, Integer.parseInt(password));
             return true;
         }
         return false;
@@ -49,8 +50,10 @@ public class UserService {
 
     public boolean login(String name, String password){
 
-        User user = userMapper.login(name, new Integer(password));
+//        User user = userMapper.login(name, new Integer(password));
 
+    	User user = userMapper.login(name, Integer.parseInt(password));
+    	
         if (user != null) {
             return true;
         }else {
@@ -62,7 +65,8 @@ public class UserService {
     public boolean setUserPasswordByName(String name,
                                          String password){
         try {
-        	userMapper.updateUserPasswordByName(name, new Integer(password));
+//        	userMapper.updateUserPasswordByName(name, new Integer(password));
+        	userMapper.updateUserPasswordByName(name, Integer.parseInt(password));
             return true;
         } catch (NumberFormatException e) {
             e.printStackTrace();

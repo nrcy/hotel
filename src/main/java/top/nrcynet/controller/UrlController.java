@@ -29,7 +29,7 @@ public class UrlController {
 
         if (cookies != null){
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("name")) {
+                if (cookie.getName().equals("name_uuid")) {
                 	if(session.getAttribute("loginState") == null) {
                 		session.setAttribute("loginState", true);
                 	}

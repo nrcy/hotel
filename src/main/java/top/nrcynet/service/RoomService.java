@@ -31,7 +31,8 @@ public class RoomService {
      */
     public Room getOneRoom(String type){
 
-        List<Room> rooms = roomMapper.selectExistRoomByType(new Integer(type));
+//    	List<Room> rooms = roomMapper.selectExistRoomByType(new Integer(type));
+    	List<Room> rooms = roomMapper.selectExistRoomByType(Integer.parseInt(type));
         if (rooms.size() >= 1){
             return rooms.get(0);
         }
@@ -47,7 +48,10 @@ public class RoomService {
      */
     public Boolean reserve(String roomIdString, String username, String breakfast){
         try {
-            Integer roomId = new Integer(roomIdString);
+            //Integer roomId = new Integer(roomIdString);
+            
+        	Integer roomId = Integer.parseInt(roomIdString);
+        	
             Integer floor = roomId / 100;
             Integer num = roomId % 100;
 

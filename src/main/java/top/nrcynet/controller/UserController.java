@@ -119,7 +119,7 @@ public class UserController {
 
     @JsonView(GetDataResult.class)
     @RequestMapping("/information")
-    public ResultModel userInformation(@CookieValue(value = "name", defaultValue = "") String name){
+    public ResultModel userInformation(@CookieValue(value = "name_uuid", defaultValue = "") String name){
         User user = userService.userInformation(name);
 
         resultModel.setObject(user);

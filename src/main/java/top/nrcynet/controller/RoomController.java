@@ -57,7 +57,7 @@ public class RoomController {
     @RequestMapping("/reserve")
     public ResultModel reserve(@RequestParam("roomId") String roomId,
                           @RequestParam("breakfast") String breakfast,
-                          @CookieValue(value = "name", defaultValue = "") String username){
+                          @CookieValue(value = "name_uuid", defaultValue = "") String username){
 
     	Boolean value = roomService.reserve(roomId, username, breakfast);
 
@@ -71,7 +71,7 @@ public class RoomController {
 
     @JsonView(GetResult.class)
     @RequestMapping("/have_history")
-    public ResultModel haveHistory(@CookieValue(value = "name", defaultValue = "") String name){
+    public ResultModel haveHistory(@CookieValue(value = "name_uuid", defaultValue = "") String name){
     	
         boolean result = cacheService.haveHistory(name);
 
@@ -86,7 +86,7 @@ public class RoomController {
 
     @JsonView(GetDataResult.class)
     @RequestMapping("/history")
-    public ResultModel history(@CookieValue(value = "name", defaultValue = "") String username){
+    public ResultModel history(@CookieValue(value = "name_uuid", defaultValue = "") String username){
         Cache cache = cacheService.history(username);
         if(cache != null) {
         	resultModel.setResult(true);
@@ -100,7 +100,7 @@ public class RoomController {
 
     @JsonView(GetResult.class)
     @RequestMapping("/pay")
-    public ResultModel pay(@CookieValue(value = "name", defaultValue = "") String name){
+    public ResultModel pay(@CookieValue(value = "name_uuid", defaultValue = "") String name){
 
         boolean result = roomService.checkOut(name);
 
